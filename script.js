@@ -29,6 +29,37 @@ if (menuBtn && links) {
   });
 }
 
+// Light / dark mode. By default the site follows the device setting (CSS prefers-color-scheme).
+// The sun/moon button switches to the other theme. The choice is saved in this browser only ('hip-theme')
+// and applied before the first paint by the one-line script in each page's <head>.
+// Picking the theme the device already uses removes the saved choice, so the site follows the device again.
+const themeBtn = document.querySelector('.theme-btn');
+const darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const root = document.documentElement;
+
+const currentTheme = () => root.getAttribute('data-theme') || (darkQuery.matches ? 'dark' : 'light');
+const syncTheme = () => {
+  const dark = currentTheme() === 'dark';
+  if (themeBtn) themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  document.querySelectorAll('meta[name="theme-color"]').forEach((m) => m.setAttribute('content', dark ? '#23163f' : '#8fd3ff'));
+};
+
+if (themeBtn) {
+  themeBtn.addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    const followsDevice = next === (darkQuery.matches ? 'dark' : 'light');
+    try {
+      if (followsDevice) localStorage.removeItem('hip-theme');
+      else localStorage.setItem('hip-theme', next);
+    } catch (e) { /* storage blocked: the switch still works until the page is closed */ }
+    if (followsDevice) root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', next);
+    syncTheme();
+  });
+}
+darkQuery.addEventListener('change', syncTheme); // device switched between light and dark
+syncTheme();
+
 // Analytics: Cloudflare Web Analytics (no cookies, no personal profiles).
 if (SITE.cfBeaconToken) {
   const beacon = document.createElement('script');

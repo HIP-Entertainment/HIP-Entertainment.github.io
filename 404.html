@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Page not found | HistoryIsPower Entertainment</title>
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#8fd3ff">
+<meta name="theme-color" content="#8fd3ff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#23163f" media="(prefers-color-scheme: dark)">
+<script>try{var t=localStorage.getItem('hip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <!-- GitHub Pages shows this page for any missing address, at any folder depth,
      so every link here starts with / (the top of the site). -->
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -21,7 +23,6 @@
       <b>History<i>Is</i>Power</b>
       <small>ENTERTAINMENT</small>
     </a>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="links">Menu</button>
     <nav class="links" id="links" aria-label="Main">
       <a href="/#games">Games</a>
       <a href="/#about">About</a>
@@ -29,6 +30,13 @@
       <a href="/#contact">Contact</a>
       <a class="pill" href="/#community">Community</a>
     </nav>
+    <div class="nav-tools">
+      <button class="theme-btn" type="button" aria-label="Switch to dark mode" title="Light / dark mode">
+        <svg class="ico-moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>
+        <svg class="ico-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.6" fill="currentColor" stroke="none"/><path d="M12 1.8v2.6M12 19.6v2.6M1.8 12h2.6M19.6 12h2.6M4.8 4.8l1.8 1.8M17.4 17.4l1.8 1.8M4.8 19.2l1.8-1.8M17.4 6.6l1.8-1.8"/></svg>
+      </button>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="links">Menu</button>
+    </div>
   </div>
 </header>
 
