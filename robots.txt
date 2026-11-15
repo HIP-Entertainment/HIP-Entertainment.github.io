@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hip-entertainment.github.io/sitemap.xml
